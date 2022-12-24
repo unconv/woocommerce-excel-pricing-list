@@ -19,7 +19,7 @@ function download_prices_shortcode( $atts, $content = null ) {
     $text = ! empty( $content ) ? do_shortcode( $content ) : 'Download Prices';
 
     // Get the URL of the REST API endpoint
-    $url = site_url( '/wp-json/my-plugin/v1/products/xls' );
+    $url = site_url( '/wp-json/wc-xls-pricing-list/v1/products/xls' );
 
     // Generate the link HTML
     $link = '<a href="' . esc_url( $url ) . '">' . esc_html( $text ) . '</a>';
@@ -30,7 +30,7 @@ function download_prices_shortcode( $atts, $content = null ) {
 add_action( 'rest_api_init', 'custom_rest_api_endpoint' );
 
 function custom_rest_api_endpoint() {
-    register_rest_route( 'my-plugin/v1', '/products/xls', array(
+    register_rest_route( 'wc-xls-pricing-list/v1', '/products/xls', array(
         'methods'  => 'GET',
         'callback' => 'get_products_xls',
     ) );
